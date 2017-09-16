@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/miniflix
     docker:
-      - image: node:8.1.3-alpine
+      - image: circleci/node:latest-browsers
     steps:
       - checkout
       - run:
@@ -13,7 +13,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
-          command: npm install
+          command: yarn
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
